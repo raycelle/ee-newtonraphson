@@ -1,0 +1,372 @@
+* {box-sizing:border-box;
+font-family: 'Noto Serif';
+}
+
+p {
+  margin: 5px;
+}
+
+/* Slideshow container */
+.slideshow-container {
+  max-width: 1000px;
+  position: relative;
+  margin: auto;
+  box-shadow: 5px -5px grey;
+}
+
+/* Hide the images by default */
+.mySlides {
+  display: none;
+  border: 1px black solid;
+  height: 700px;
+  padding: 20px 10px;
+}
+
+.slide-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+/* Next & previous buttons */
+.prev, .next {
+  cursor: pointer;
+  width: auto;
+  padding: 16px;
+  color: black;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+}
+
+/* The dots/bullets/indicators */
+.dot {
+  cursor: pointer;
+  height: 25px;
+  width: 25px;
+  margin: 0 2px;
+/*  background-color: #bbb;*/
+/*  border-radius: 50%;*/
+  border: 1px grey solid;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.active, .dot:hover, #example-equations div:hover, #dig div:hover, #dig-solve:hover {
+  background-color: #c4c2c2 !important;
+}
+
+#slideshow-bottom{
+  margin-top: 5px;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+}
+
+/* Style the tab */
+.tab {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+  margin-top: 5px;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+/*  border: 1px solid #ccc;*/
+  border-top: none;
+}
+
+#Graph div, .equation {
+  display: flex;
+  flex-direction: row;
+    justify-content: space-evenly;
+  align-items: center;
+}
+
+.coefficient {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.coefficient p {
+  font-size: 16px;
+  margin: 5px;
+}
+
+table {
+  border-collapse: collapse;
+  width: 50px;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+
+.point, .pointtan{
+	cursor: pointer;
+}
+
+
+
+.tangentline {
+	stroke-dasharray: 5,5; 
+	cursor:pointer;
+  vector-effect: non-scaling-stroke;
+}
+
+.tangentline1{
+  stroke-dasharray: 5,5; 
+  cursor:pointer;
+  vector-effect: non-scaling-stroke;
+  stroke-width: 2px;
+  stroke: green;
+  fill: none;
+}
+
+/*path {
+  fill: none;
+  stroke-width: 1px;
+  stroke: black;
+}*/
+.dashed, .verticalline {
+  stroke-dasharray: 3,3;
+  vector-effect: non-scaling-stroke;
+}
+
+.verticalline {
+  stroke-dasharray: 3,3;
+  vector-effect: non-scaling-stroke;
+  fill:none;
+  stroke: red;
+  stroke-width: 2px;
+}
+
+
+.mainline{
+  vector-effect: non-scaling-stroke;
+  fill: none;
+  stroke-width: 1px;
+  stroke: black;
+}
+
+#container-newton{
+  display:flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+#newtontable td{
+/*  font-size: 100px;*/
+}
+
+#graph-equations-container{
+  width: 100%;
+  display:flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.tooltip {
+  position: absolute;
+  pointer-events: none;
+/*  border:black solid 1px;*/
+  background-color: white;
+  color: black;
+  z-index:2;
+  padding: 5px;
+}
+
+#tangent-p{
+  margin:25px;
+}
+
+#numericalmethodsapps td{
+  width: 220px;
+  height: 220px;
+  text-align: center;
+  background-size:contain;
+  background-color: rgba(255,255,255,0.7);
+  background-blend-mode: lighten;
+}
+
+#numericalmethodsapps h3, #numericalmethodsapps p{
+  background-color: rgba(255,255,255,0.6);
+  border-radius: 10px;
+}
+
+#numericalmethodsapps{
+  width:670px;
+}
+
+#numericalmethodsapps td:hover{
+  background-color: rgba(255,255,255,0.9);
+}
+
+.pointbasic{
+  cursor: pointer;
+}
+
+@keyframes center-animate {
+    0% {
+        transform: scaleX(1.5);
+    }
+    100% {
+        transform: scaleX(1);
+    }
+}
+
+.animate-point{
+/*  transform-origin: center;
+   animation: center-animate 1s ease infinite alternate;*/
+/*}*/
+}
+
+#guessanswer{
+  color: red;
+  font-weight: bold;
+}
+
+#pluggedin p{
+  margin: 0px;
+}
+
+#pluggedin {
+  display: flex;
+  flex-direction: row;
+    justify-content: center;
+  align-items: center;
+}
+
+#procedure {
+  width: 100%;
+/*  height: 100px;
+  border: double black 4px;
+  padding: 5px;*/
+}
+
+.tooltip1{
+  fill:white;
+  color: black;
+  stroke: black;
+}
+
+img {
+  height: 120px;
+}
+
+.application-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  border: black solid 1px;
+  width: 700px;
+  margin: 15px;
+  padding: 10px;
+}
+
+.application-container:hover {
+background-color: lightgrey;
+  }
+
+
+a:not(#ddlink) {
+  text-decoration: none;
+  color: black;
+}
+
+/*#ddlink{
+  text-decoration: underline;
+  color: ;
+}*/
+
+#procedure table, #tbl-example1, #tbl-example2, #tbl-example3 {
+  width: 100%;
+  font-size: 14px;
+}
+
+#titleimg {
+  height: 400px;
+}
+
+/*#dig {
+  display: flex;
+  flex-direction: row;
+}
+
+#dig div{
+  cursor: pointer;
+  margin: 10px;
+}*/
+
+#example-equations, #dig {
+  display: flex;
+  flex-direction: row;
+  width:90%;
+  justify-content: space-around;
+
+}
+#dig{
+  justify-content: center;
+  margin-top: 10px;
+}
+
+#example-equations div, #dig div {
+  background-color: #f1f1f1;
+  border: lightgrey solid 1px;
+  padding: 5px;
+  cursor: pointer;
+  width: 25%;
+  text-align: center;
+    transition: 0.3s;
+}
+
+#dig-solve{
+  background-color: #f1f1f1;
+  border: 1px solid #ccc;
+  order: lightgrey solid 1px;
+  padding: 5px;
+  cursor: pointer;
+  width: 25%;
+  text-align: center;
+  transition: 0.3s;
+  width:75%;
+  margin: auto;
+  margin-top: 5px;
+}
+
+

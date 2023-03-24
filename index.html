@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Final Project</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.2/d3.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    </script>
+     <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Noto+Serif">
+</head>
+
+<body>
+    <div class="slideshow-container">
+        <div class="mySlides">
+            <div class="slide-container">
+                <h1>Exploring ways computers can solve mathematical equations</h1>
+                <br>
+                <img id = "titleimg" src="assets/graph_img.png">
+                <br>
+                <h2>A brief introduction to the Newton-Raphson Method</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="slideshow-container">
+        <div class="mySlides">
+            <div class="slide-container">
+                <h1>Hidden Calculations</h1>
+                <p> Computers play a crucial role in performing  mathematical calculations that are an essential part of many applications, including:   </p>
+                <table id="numericalmethodsapps">
+                    <tr>
+                        <td background="assets/atom.png">
+                            <h3>Scientific Research</h3>
+                            <p>solve complex equations and simulations of physical phenomena</p>
+                        </td>
+                        <td background="assets/diagram.png"><h3>Financial Analysis</h3>
+                            <p>financial modeling and risk analysis</p>
+                        </td>
+                        <td background="assets/joystick.png"><h3>Gaming and Entertainment</h3>
+                            <p>physics simulations, graphics rendering, and animation</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td background="assets/city-map.png">
+                            <h3>Transportation</h3>
+                            <p>traffic modeling, route optimization, and vehicle design.</p>
+                        </td>
+                        <td background="assets/step.png">
+                            <h3>Marketing and Advertising</h3>
+                            <p>data analysis and customer profiling</p>
+                        </td>
+                        <td background="assets/handball.png">
+                            <h3>Sports</h3>
+                            <p>analyze motion, biomechanics, and performance data</p>
+                        </td>
+                    </tr>
+                </table>
+                <br>
+                <p>Computers perform many different algorithms, called numerical methods, to solve mathematical equations. The <i> Newton-Raphson Method </i> is one such algorithm that is used to solve equations.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="slideshow-container">
+        <div class="mySlides">
+            <div class="slide-container">
+                <h1>Basic Equations</h1>
+                <p>Before diving in, let's first refresh our memory by starting with a basic, linear equation:</p>
+                <div>\( x + 1 = 0 \)</div>
+                <p>Ordinarily, we can solve it two ways. Check them out below.</p>
+
+
+
+                <div class="tab">
+                    <button class="tablinks" onclick="openTab(event, 'Algebra')">Algebraic Solution</button>
+                    <button class="tablinks" onclick="openTab(event, 'Graph')">Graphical Solution</button>
+                </div>
+                <div id="Algebra" class="tabcontent">
+                    <p>To solve algebraically, we isolate x using basic addition, subtraction, multiplication or division.</p>
+                    <p> $$ \begin{align}x+1 &= 0 \\
+                    x + 1 - 1 &= -1 \\
+                    x &= -1\end{align} $$</p>
+                    <!-- \text{(subtract 1 from both sides)} -->
+                    <p>When an equation can be solved for an exact solution just by using these basic operations, we say that it can be solved <i>analytically</i>. <br> <br> Computers can solve all linear equations analytically. However, as equations get more complicated, we'll find many that cannot be solved this way. </p>
+                </div>
+                <div id="Graph" class="tabcontent">
+                    <p>To solve graphically, we can plot the equation as a line on a graph. The solution is where the line intersects the x-axis. <br> <i>Click on the correct <span style="color: red; font-size:18px;">●</span> solution below. </i></p> <br>
+                	<div>
+                        <table>
+                        	<tr>
+                        		<th>x</th>
+                        		<th>y</th>
+                        	</tr>
+                        	<tr id="r1">
+                        		<td>-2</td>
+                        		<td>-1</td>
+                        	</tr>
+                        	<tr id="r2">
+                        		<td>-1</td>
+                        		<td>0</td>
+                        	</tr>
+                        	<tr id="r3">
+                        		<td>0</td>
+                        		<td>1</td>
+                        	</tr>
+                        	<tr id="r4">
+                        		<td>1</td>
+                        		<td>2</td>
+                        	</tr>
+                        	<tr id="r5">
+                        		<td>2</td>
+                        		<td>3</td>
+                        	</tr>
+                        </table>
+                        <div>
+                    	   <svg id="basic-graph"></svg>
+                  		</div>
+              		</div>
+                    <p id="basic-p" style="display:none;">While computers do not solve basic <i>linear</i> equations graphically, they do use graph properties to solve more complex equations - especially ones that <i>cannot </i> be solved analytically! </p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="slideshow-container">
+        <div class="mySlides">
+            <div class="slide-container">
+                <h1>Graphs of equations</h1>
+                <p>Since graphs will help us solve more complex equations, let's get some practice! <br> <br> <i> Build your own equation and try to estimate the solution based on the graph! </i></p>
+                <br>
+                <br>
+                <div id="graph-equations-container">
+                    <div >
+                        <div class="equation">
+                            <p>
+                                \( y = \)
+                            </p>
+
+                            <div class="coefficient">
+                                <button class="increase">&#8593;</button>
+                                <p id="cube-coeff">1</p>
+                                <button class="decrease">&#8595;</button>
+                            </div>
+
+                            <p>\( x^3 + \)</p>
+
+                            <div class="coefficient">
+                                <button class="increase">&#8593;</button>
+                                <p id="square-coeff">1</p>
+                                <button class="decrease">&#8595;</button>
+                            </div>
+
+                            <p>\( x^2 + \)</p>
+
+                            <div class="coefficient">
+                                <button class="increase">&#8593;</button>
+                                <p id="coeff">1</p>
+                                <button class="decrease">&#8595;</button>
+                            </div>
+
+                            <p>\(x + \)</p>
+
+                            <div class="coefficient">
+                                <button class="increase">&#8593;</button>
+                                <p id="constant">1</p>
+                                <button class="decrease">&#8595;</button>
+                            </div>
+
+                        </div>
+                        <div>
+                            <svg id="example-equation-graph"></svg>
+                        </div>
+                    </div>
+                    <div style="width:315px;">
+                        <p>Try approximating a solution based on the graph:</p> <br>
+                        <input type="text" name="sln-guess" id="sln-guess">
+                        <button id="btn-sln-guess">Check</button><br><br>
+                        <p id="guess-feedback-prompt" style="display:none;"><i>The easiest way to check is to substitute it back into the equation and see if we get zero!</i><br></p><br>
+
+                        <div class="equation" id="pluggedin">
+                            <p id="cube-coeff1">1</p>
+                            <p> · </p>
+                            <p class="pluggedinvar"></p>
+                            <p>\(^3 + \)</p>
+                            <p id="square-coeff1">1</p>
+                            <p> · </p>
+                            <p class="pluggedinvar"></p>
+                            <p>\(^2 + \)</p>
+                            <p id="coeff1">1</p>
+                            <p> · </p>
+                            <p class="pluggedinvar"></p>
+                            <p>\( + \)</p>
+                            <p id="constant1">1</p>
+                            <p> =</p>
+                            <p id="guessanswer"></p>
+                        </div>
+                        <br>
+                        <p id="guess-feedback" style="display:none;"></p>
+                    </div>
+                </div>
+                <p style="margin:25px 25px;">While we can use our eyes to estimate the x-intercept point for this small range, computers will need a more algorithmic way to find it. They use something called <i>tangents</i>.</p>
+            </div>
+        </div>
+    </div>
+    <div class="slideshow-container">
+        <div class="mySlides">
+            <div class="slide-container">
+                <h1>Tangents</h1>
+                <p>A tangent is a straight line that touches a curve at a single point. Since computers can easily handle straight lines, tangents allow computers to process more complicated curves. <br><br><i> Click the <span style="color: red; font-size:20px">●</span> below for the tangent line at that point. </i><br> <br>
+                What do you notice about the tangent lines as you get closer to the x-intersect solution?</p>
+
+                <svg id="graph-tangents"></svg>
+                <p id="tangent-p" style="display:none;">We can see that as you move along the curve, where the tangent line crosses the x-axis also gets closer and closer to the solution. We'll use this property in an algorithm called the <i>Newton-Raphson method</i>.</p>
+            </div>
+        </div>
+    </div>
+    <div class="slideshow-container">
+        <div class="mySlides">
+            <div class="slide-container">
+                <h1>The Newton-Raphson Method</h1>
+                <p>For the Newton-Raphson method, we strategically draw a series of tangent lines until we get to an approximation that's close enough to the solution. Let's try it with the below graph of \(y=x^2-2 \). (Scroll to zoom)</p>
+                <div id="container-newton">
+                    <div>
+                       <svg id="newton-graph"></svg> 
+                    </div>
+                </div>
+                
+                <div  id="procedure">
+
+                    <table id="tbl-procedure" align="left">
+                        <colgroup>
+                           <col span="1" style="width: 590px;">
+                           <col span="1" style="width: 127px;">
+                           <col span="1" style="width: 127px;">
+                           <col span="1" style="width: 127px;">
+                        </colgroup>
+                        <tr>
+                            <td class="p1-1">Step 1: Make a guess for the solution.</td>
+                            <td class="p1-2"><i> Click <span style="color: green">●</span> to guess <br>x = 2. </i></td>
+                            <td class="p1-3"><i> Click <span style="color: green">●</span> to guess <br>x = 1.5. </i></td>
+                            <td class="p1-4"><i> Click <span style="color: green">●</span> to guess <br>x = 1.417. </i></td>
+                        </tr>
+                        <tr height="37px">
+                            <td class="p2-1">Step 2: Find the actual point where this is on the graph and draw its tangent line.</td>
+                            <td class="p2-2">Click <span style="color: red">●</span> to draw the tangent </i></td>
+                        </tr>
+                        <tr height="41px">
+                            <td class="p3-1">Step 3: Find where the tangent intercepts the x-axis. Check if this is a solution.</td>
+                            <td class="p3-2">x=1.5 <button class="btn3-2">Check</button> </td>
+                            <td class="p3-3">x=1.417 <button class="btn3-3">Check</button> </td>
+                            <td class="p3-4">x=1.414 <button class="btn3-4">Check</button></td>
+                        </tr>
+                        <tr height="37px">
+                            <td class="p4-1">Step 4: If not yet a solution, use this as the next guess and repeat steps 1-3.</td>
+                            <td class="p4-2">(y=0.25) &#10060;</td>
+                            <td class="p4-3">(y &#8776 0.01) &#10060;</td>
+                            <td class="p4-4">(y &#8776 0.00) <span style="color: green">&#10003;</span></td>
+
+                        </tr>
+                    </table> 
+                    
+                </div>
+                <p id="procedure-msg" style="display: none;margin-top:10px;">And that's it! We reached the solution! Let's try a couple more times on the next page.</p>
+
+            </div>
+        </div>
+    </div>
+    <div class="slideshow-container">
+        <div class="mySlides">
+            <div class="slide-container" id="other-examples">
+                <h1>Other Examples</h1>
+                <p>Click on an equation to try it:</p>
+                <div id="example-equations">
+                    <div id = "example1-eq">\(y = 4 \ln(x) - x\)</div>
+                    <div id = "example2-eq">\(y = \sin(x) - x^2 \)</div>
+                    <div id = "example3-eq">\(y = \sqrt[3]{x}\)</div>
+                </div>
+
+                <div style="height:10px"></div>
+
+                <svg id="example1" ></svg>
+                <svg id="example2" ></svg>
+                <svg id="example3" ></svg>
+
+                <div style="height:10px"></div>
+
+
+                <div style="width:100%;">
+                     <table id="tbl-example1" align="left">
+                        <colgroup>
+                           <col span="1" style="width: 590px;">
+                           <col span="1" style="width: 127px;">
+                           <col span="1" style="width: 127px;">
+                           <col span="1" style="width: 127px;">
+                        </colgroup>
+                        <tr>
+                            <td class="p1-1">Step 1: Make a guess for the solution.</td>
+                            <td class="p1-2"><i> Click <span style="color: green">●</span> to guess <br>x = 6. </i></td>
+                            <td class="p1-3"><i> Click <span style="color: green">●</span> to guess <br>x = 9.5. </i></td>
+                            <td class="p1-4"><i> Click <span style="color: green">●</span> to guess <br>x = 8.645. </i></td>
+                        </tr>
+                        <tr>
+                            <td class="p2-1">Step 2: Find the actual point where this is on the graph and draw its tangent line.</td>
+                            <td class="p2-2">Click <span style="color: red">●</span> to draw the tangent </i></td>
+                        </tr>
+                        <tr>
+                            <td class="p3-1">Step 3: Find where the tangent intercepts the x-axis. Check if this is a solution.</td>
+                            <td class="p3-2">x=9.5 <button class="btn3-2">Check</button> </td>
+                            <td class="p3-3">x=8.645 <button class="btn3-3">Check</button> </td>
+                            <td class="p3-4">x=8.613 <button class="btn3-4">Check</button></td>
+                        </tr>
+                        <tr>
+                            <td class="p4-1">Step 4: If not yet a solution, use this as the next guess and repeat steps 1-3.</td>
+                            <td class="p4-2">(y &#8776 -0.49) &#10060;</td>
+                            <td class="p4-3">(y &#8776 0.02) &#10060;</td>
+                            <td class="p4-4">(y &#8776 0.00) <span style="color: green">&#10003;</span></td>
+
+                        </tr>
+                    </table> 
+
+                    <table id="tbl-example2" align="left">
+                        <colgroup>
+                           <col span="1" style="width: 590px;">
+                           <col span="1" style="width: 127px;">
+                           <col span="1" style="width: 127px;">
+                           <col span="1" style="width: 127px;">
+                        </colgroup>
+                        <tr>
+                            <td class="p1-1">Step 1: Make a guess for the solution.</td>
+                            <td class="p1-2"><i> Click <span style="color: green">●</span> to guess <br>x = 1. </i></td>
+                            <td class="p1-3"><i> Click <span style="color: green">●</span> to guess <br>x = 0.891. </i></td>
+                            <!-- <td class="p1-4"><i> Click <span style="color: green">●</span> to guess <br>x = 1.417. </i></td> -->
+                        </tr>
+                        <tr>
+                            <td class="p2-1">Step 2: Find the actual point where this is on the graph and draw its tangent line.</td>
+                            <td class="p2-2">Click <span style="color: red">●</span> to draw the tangent </i></td>
+                        </tr>
+                        <tr>
+                            <td class="p3-1">Step 3: Find where the tangent intercepts the x-axis. Check if this is a solution.</td>
+                            <td class="p3-2">x=0.891 <button class="btn3-2">Check</button> </td>
+                            <td class="p3-3">x=0.877 <button class="btn3-3">Check</button> </td>
+                            <!-- <td class="p3-4">x=1.414 <button class="btn3-4">Check</button></td> -->
+                        </tr>
+                        <tr>
+                            <td class="p4-1">Step 4: If not yet a solution, use this as the next guess and repeat steps 1-3.</td>
+                            <td class="p4-2">(y &#8776 -0.02) &#10060;</td>
+                            <td class="p4-3">(y &#8776 0.00) <span style="color: green">&#10003;</span></td>
+                            <!-- <td class="p4-4">(y &#8776 0.00) </td> -->
+
+                        </tr>
+                    </table> 
+
+                    <table id="tbl-example3" align="left">
+                        <colgroup>
+                           <col span="1" style="width: 590px;">
+                           <col span="1" style="width: 127px;">
+                           <col span="1" style="width: 127px;">
+                           <col span="1" style="width: 127px;">
+                        </colgroup>
+                        <tr>
+                            <td class="p1-1">Step 1: Make a guess for the solution.</td>
+                            <td class="p1-2"><i> Click <span style="color: green">●</span> to guess <br>x = 1. </i></td>
+                            <td class="p1-3"><i> Click <span style="color: green">●</span> to guess <br>x = -2. </i></td>
+                            <td class="p1-4"><i> Click <span style="color: green">●</span> to guess <br>x = 4. </i></td>
+                        </tr>
+                        <tr>
+                            <td class="p2-1">Step 2: Find the actual point where this is on the graph and draw its tangent line.</td>
+                            <td class="p2-2">Click <span style="color: red">●</span> to draw the tangent </i></td>
+                        </tr>
+                        <tr>
+                            <td class="p3-1">Step 3: Find where the tangent intercepts the x-axis. Check if this is a solution.</td>
+                            <td class="p3-2">x=-2 <button class="btn3-2">Check</button> </td>
+                            <td class="p3-3">x=4 <button class="btn3-3">Check</button> </td>
+                            <td class="p3-4">x=-8 <button class="btn3-4">Check</button></td>
+                        </tr>
+                        <tr>
+                            <td class="p4-1">Step 4: If not yet a solution, use this as the next guess and repeat steps 1-3.</td>
+                            <td class="p4-2">(y &#8776 -1.26) &#10060;</td>
+                            <td class="p4-3">(y &#8776 1.59) &#10060;</td>
+                            <td class="p4-4">(y = -2) &#10060;</td>
+                        </tr>
+                    </table> 
+                    <div style="height:10px"></div>
+                    <div id="ex3-exp" style="display: none;margin-top:10px">Hold on! There's something wrong here! In this case, we see that we are getting further and further away from the solution. This is one possible case where the Newton-Raphson method <i>fails </i> since the tangents diverge instead of converge to a solution. In this case, we would need to look to other numerical methods to solve this equation.</div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="slideshow-container">
+        <div class="mySlides">
+            <div class="slide-container">
+                <h1>Digging Deeper</h1>
+                <p id="dig-p">Would you like to see the mathematical formula for the Newton-Raphson method going on behind the scenes?</p>
+                <div id="dig">
+                    
+                    <div id="dig-yes-btn">Yes</div>
+                    <div id="dig-no-btn">No</div>
+
+                </div>
+<br><br>
+                <div id="dig-yes" >
+                    The formula for the next guess \( x_{n+1} \) after guess \(x_n\) is:
+
+                    $$ x_{n+1} = x_{n} - \frac{f(x_n)}{f'(x_n)} $$
+
+                    We can try using this formula with the same equation as before and get the same results!
+                    <div id="dig-solve"> Solve \( f(x) = x^2 - 2\) with an initial guess at \(x_0=2\).</div>
+                        <div id="dig-sln" style="display: none;">
+                        Using differentiation, we find \( f'(x) = 2x\).
+                        <br> <br>
+                        <table>
+                            <tr>
+                                <th>n</th>
+                                <th>Calculation</th>
+                                <th>\(x_n\)</th>
+                            </tr>
+                            <tr>
+                                <td>0</td>
+                                <td></td>
+                                <td>2</td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>\( x_{1} = x_{0} - \frac{f(x_0)}{f'(x_0)} = 2 - \frac{f(2)}{f'(2)} = 2 - \frac{2}{4} \)</td>
+                                <td>1.5</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>\( x_{2} = x_{1} - \frac{f(x_1)}{f'(x_1)} = 1.5 - \frac{f(1.5)}{f'(1.5)} = 1.5 - \frac{0.25}{3} \)</td>
+                                <td>1.417</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>\( x_{3} = x_{2} - \frac{f(x_2)}{f'(x_2)} = 1.417 - \frac{f(1.417)}{f'(1.417)} = 1.417 - \frac{0.01}{2.83} \)</td>
+                                <td>1.414</td>
+                            </tr>
+                        </table>
+                        <br>
+                        Want to learn more? Check out <a id="ddlink" href="https://web.ma.utexas.edu/users/m408n/CurrentWeb/LM4-8-2.php" target="_blank">this explanation</a>  from UT Austin.
+                    </div>
+                    <div id="dig-no" >Then head to the next page to see some examples of applications of the Newton-Raphson method!</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="slideshow-container">
+        <div class="mySlides">
+            <div class="slide-container">
+                <h1>Applications</h1>
+                <p>The Newton-Raphson Method is one of numerous numerical methods computers use. Some applications of this method include: </p>
+                <a href="https://ai.plainenglish.io/newton-raphson-method-in-machine-learning-9ff2f81b4c59" target="_blank"><div class="application-container"><div><h3>Machine Learning:</h3> <p>Finding the difference between a ML model's predicted and actual target output.</p> </div><img src="assets/newton_optimization.png"></div></a>
+
+                <a href="https://biocrudetech.com/index.php?option=com_blankcomponent&view=default&Itemid=656" target="_blank"><div class="application-container"><img src="https://www.optionsplaybook.com/media/images/graphics/volatility_chart.gif"><div><h3>Finance</h3><p>Estimating implied volatility to price options</p></div></div></a>
+
+                <a href="https://www.researchgate.net/publication/299486609_Enhanced_Edge_Detection_Method_using_Unconstrained_Non-Linear_Optimization_Technique" target="_blank"><div class="application-container"><div><h3>Image Processing</h3><p>Detect edges in images</p></div><img src="https://fr.mathworks.com/discovery/edge-detection/_jcr_content/mainParsys/image_1.adapt.full.medium.jpg/1662744093764.jpg"></div></a>
+
+            </div>
+        </div>
+    </div>
+    <!-- The dots/circles -->
+    <div id="slideshow-bottom"style="text-align:center">
+        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+        <span class="dot" onclick="currentSlide(1)">1</span>
+        <span class="dot" onclick="currentSlide(2)">2</span>
+        <span class="dot" onclick="currentSlide(3)">3</span>
+        <span class="dot" onclick="currentSlide(4)">4</span>
+        <span class="dot" onclick="currentSlide(5)">5</span>
+        <span class="dot" onclick="currentSlide(6)">6</span>
+        <span class="dot" onclick="currentSlide(7)">7</span>
+        <span class="dot" onclick="currentSlide(8)">8</span>
+        <span class="dot" onclick="currentSlide(9)">9</span>
+        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+    </div>
+    <script src="app.js"></script>
+</body>
+
+</html>
